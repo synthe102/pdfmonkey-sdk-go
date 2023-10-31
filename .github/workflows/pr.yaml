@@ -1,0 +1,30 @@
+name: PR flow
+concurrency:
+  group: ${{ github.ref }}
+  cancel-in-progress: true
+on:
+  pull_request:
+    paths-ignore:
+      - 'README.md'
+
+jobs:
+  test:
+    name: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - name: Setup go
+        uses: actions/setup-go@v4
+        with:
+          go-version: '^1.21'
+          cache: true
+          cache-dependency-path: go.sum
+      - name: golangci-lint
+        uses: golangci/golangci-lint-action@v3
+        with:
+          args: "--timeout=5m"
+      - name: run tests
+        run: go test ./...
