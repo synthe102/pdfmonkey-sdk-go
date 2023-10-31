@@ -42,5 +42,5 @@ The precedence for the client configuration is as follow:
 
 # TODO
 
-- [] write test suite
-- [] tidy up the code
+- [ ] write test suite
+- [ ] tidy up the code
