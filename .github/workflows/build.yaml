@@ -25,7 +25,6 @@ jobs:
       - name: automatic-draft-release
         uses: marvinpinto/action-automatic-releases@v1.2.1
         with:
-          draft: true
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           title: "${{ steps.bump-semver.outputs.tag }} by:${{ github.actor }}"
           automatic_release_tag: ${{ steps.bump-semver.outputs.new_tag }}
