@@ -26,5 +26,6 @@ jobs:
         uses: marvinpinto/action-automatic-releases@v1.2.1
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          title: "${{ steps.bump-semver.outputs.tag }} by:${{ github.actor }}"
+          prerelease: false
+          title: "${{ steps.bump-semver.outputs.tag }}"
           automatic_release_tag: ${{ steps.bump-semver.outputs.new_tag }}
