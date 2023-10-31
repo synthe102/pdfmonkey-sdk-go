@@ -121,6 +121,7 @@ func (c *Client) GetCurrentUser() (*GetCurrentUserResponse, error) {
 	if err != nil {
 		return nil, err
 	}
+	defer res.Body.Close()
 
 	b, err := io.ReadAll(res.Body)
 	if err != nil {
@@ -172,6 +173,7 @@ func (c *Client) ListDocuments(input *ListDocumentsInput) (*ListDocumentsOutput,
 	if err != nil {
 		return nil, err
 	}
+	defer res.Body.Close()
 	if res.StatusCode != http.StatusOK {
 		return nil, fmt.Errorf("Failed to list documents, error code: %v", res.StatusCode)
 	}
@@ -208,6 +210,7 @@ func (c *Client) GetDocumentCard(documentId *string) (*GetDocumentCardOutput, er
 	if err != nil {
 		return nil, err
 	}
+	defer res.Body.Close()
 	if res.StatusCode != http.StatusOK {
 		return nil, fmt.Errorf("Failed to fetch document card, error code: %v", res.StatusCode)
 	}
@@ -244,6 +247,7 @@ func (c *Client) GetDocument(documentId *string) (*GetDocumentOutput, error) {
 	if err != nil {
 		return nil, err
 	}
+	defer res.Body.Close()
 	if res.StatusCode != http.StatusOK {
 		return nil, fmt.Errorf("Failed to fetch documents, error code: %v", res.StatusCode)
 	}
@@ -289,6 +293,7 @@ func (c *Client) CreateDocument(input *CreateDocumentInput) (*CreateDocumentOutp
 	if err != nil {
 		return nil, err
 	}
+	defer res.Body.Close()
 	if res.StatusCode != http.StatusCreated {
 		return nil, fmt.Errorf("Failed to create document, error code: %v", res.StatusCode)
 	}
@@ -330,6 +335,7 @@ func (c *Client) UpdateDocument(input *UpdateDocumentInput) error {
 	if err != nil {
 		return err
 	}
+	defer res.Body.Close()
 
 	if res.StatusCode != http.StatusOK {
 		return fmt.Errorf("Failed to edit document with ID: %s", input.Document.ID)
@@ -351,6 +357,7 @@ func (c *Client) DeleteDocument(documentId *string) error {
 	if err != nil {
 		return err
 	}
+	defer res.Body.Close()
 
 	if res.StatusCode != http.StatusNoContent {
 		return fmt.Errorf("Failed to delete document with ID: %s", *documentId)
