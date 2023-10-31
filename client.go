@@ -115,6 +115,7 @@ func (c *Client) GetCurrentUser() (*GetCurrentUserResponse, error) {
 	}
 
 	req.Header.Add("Authorization", fmt.Sprintf("Bearer %s", c.APIKey))
+	req.Header.Add("User-Agent", "go")
 
 	client := &http.Client{}
 	res, err := client.Do(req)
@@ -166,6 +167,7 @@ func (c *Client) ListDocuments(input *ListDocumentsInput) (*ListDocumentsOutput,
 	}
 
 	req.Header.Add("Content-Type", "application/json")
+	req.Header.Add("User-Agent", "go")
 	req.Header.Add("Authorization", fmt.Sprintf("Bearer %s", c.APIKey))
 
 	client := &http.Client{}
@@ -203,6 +205,7 @@ func (c *Client) GetDocumentCard(documentId *string) (*GetDocumentCardOutput, er
 	}
 
 	req.Header.Add("Content-Type", "application/json")
+	req.Header.Add("User-Agent", "go")
 	req.Header.Add("Authorization", fmt.Sprintf("Bearer %s", c.APIKey))
 
 	client := &http.Client{}
@@ -240,6 +243,7 @@ func (c *Client) GetDocument(documentId *string) (*GetDocumentOutput, error) {
 	}
 
 	req.Header.Add("Content-Type", "application/json")
+	req.Header.Add("User-Agent", "go")
 	req.Header.Add("Authorization", fmt.Sprintf("Bearer %s", c.APIKey))
 
 	client := &http.Client{}
@@ -286,6 +290,7 @@ func (c *Client) CreateDocument(input *CreateDocumentInput) (*CreateDocumentOutp
 	}
 
 	req.Header.Add("Content-Type", "application/json")
+	req.Header.Add("User-Agent", "go")
 	req.Header.Add("Authorization", fmt.Sprintf("Bearer %s", c.APIKey))
 
 	client := &http.Client{}
@@ -328,6 +333,7 @@ func (c *Client) UpdateDocument(input *UpdateDocumentInput) error {
 	}
 
 	req.Header.Add("Content-Type", "application/json")
+	req.Header.Add("User-Agent", "go")
 	req.Header.Add("Authorization", fmt.Sprintf("Bearer %s", c.APIKey))
 
 	client := &http.Client{}
@@ -351,6 +357,7 @@ func (c *Client) DeleteDocument(documentId *string) error {
 	}
 
 	req.Header.Add("Authorization", fmt.Sprintf("Bearer %s", c.APIKey))
+	req.Header.Add("User-Agent", "go")
 
 	client := &http.Client{}
 	res, err := client.Do(req)
