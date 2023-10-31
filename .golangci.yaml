@@ -1,0 +1,29 @@
+run:
+  timeout: 5m
+linters:
+  disable-all: true
+  enable:
+    - errcheck
+    - ineffassign
+    - gofmt
+    - gosec
+    - gosimple
+    - goimports
+    - govet
+    - staticcheck
+    - typecheck
+    - unused
+    - bodyclose
+    - exportloopref
+    - forcetypeassert
+    - makezero
+    - reassign
+    - rowserrcheck
+    - gocritic
+    - ginkgolinter
+linters-settings:
+  gocritic:
+    enabled-checks:
+      - deferInLoop
+      - evalOrder
+      - exitAfterDefer
