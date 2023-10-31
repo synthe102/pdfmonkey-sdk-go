@@ -1,0 +1,24 @@
+name: Release Build
+concurrency:
+  group: ${{ github.ref }}
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - '**/README.md'
+
+jobs:
+  get-version:
+    name: Get Version
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Bump Version
+        uses: anothrNick/github-tag-action@1.67.0
+        id: bump-semver
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          WITH_V: true
+          RELEASE_BRANCHES: main
